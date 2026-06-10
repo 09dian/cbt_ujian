@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,6 +12,13 @@ return new class extends Migration
     {
         Schema::create('exams', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('subject_id');
+            $table->foreignId('teacher_id');
+            $table->string('title');
+            $table->integer('duration'); // menit
+            $table->timestamp('start_time');
+            $table->timestamp('end_time');
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

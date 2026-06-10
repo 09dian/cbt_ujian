@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,6 +12,15 @@ return new class extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('exam_id');
+            $table->text('question');
+            $table->string('option_a');
+            $table->string('option_b');
+            $table->string('option_c');
+            $table->string('option_d');
+            $table->enum('correct_answer', ['A', 'B', 'C', 'D']);
+            $table->integer('score')->default(1);
+
             $table->timestamps();
         });
     }
