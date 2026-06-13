@@ -17,7 +17,7 @@ use Filament\Tables\Table;
 class ExamResource extends Resource
 {
     protected static ?string $model = Exam::class;
-
+    protected static ?string $navigationLabel = 'Nama Ujian';
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-clipboard-document-list';
 
     protected static ?string $recordTitleAttribute = 'title';
@@ -35,8 +35,8 @@ class ExamResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
-        ];
+                //
+            ];
     }
 
     public static function getPages(): array

@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Teacher extends Model
+class Teacher extends Authenticatable
 {
     protected $fillable = [
         'name',
@@ -13,6 +13,18 @@ class Teacher extends Model
         'email',
         'password',
     ];
-    
 
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    protected $casts = [
+        'password' => 'hashed',
+    ];
+
+    public function subjects()
+    {
+        return $this->hasMany(Subject::class);
+    }
 }

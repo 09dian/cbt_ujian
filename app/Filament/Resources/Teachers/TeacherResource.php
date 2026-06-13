@@ -17,7 +17,7 @@ use Filament\Tables\Table;
 class TeacherResource extends Resource
 {
     protected static ?string $model = Teacher::class;
-
+    protected static ?string $navigationLabel = 'Guru';
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-academic-cap';
 
     protected static ?string $recordTitleAttribute = 'name';

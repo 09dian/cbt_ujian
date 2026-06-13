@@ -17,7 +17,7 @@ use Filament\Tables\Table;
 class QuestionResource extends Resource
 {
     protected static ?string $model = Question::class;
-
+    protected static ?string $navigationLabel = 'Buat Soal';
     protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-document-text';
 
     public static function form(Schema $schema): Schema
@@ -33,8 +33,8 @@ class QuestionResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
-        ];
+                //
+            ];
     }
 
     public static function getPages(): array
