@@ -2,13 +2,13 @@
 
 namespace App\Filament\Student\Resources\Exams;
 
-use App\Filament\Student\Resources\Exams\Pages\ListExams;
 use App\Filament\Student\Resources\Exams\Tables\ExamsTable;
 use App\Models\Exam;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
+use Filament\Resources\Pages\ListRecords; // Import ListRecords bawaan
 
 class ExamResource extends Resource
 {
@@ -25,25 +25,31 @@ class ExamResource extends Resource
         return ExamsTable::configure($table);
     }
 
-    public static function canCreate(): bool
-    {
-        return false;
-    }
-
-    public static function canEdit(Model $record): bool
-    {
-        return false;
-    }
-
-    public static function canDelete(Model $record): bool
-    {
-        return false;
-    }
+    // Proteksi Hak Akses
+    public static function canCreate(): bool { return false; }
+    public static function canEdit(Model $record): bool { return false; }
+    public static function canDelete(Model $record): bool { return false; }
 
     public static function getPages(): array
     {
         return [
-            'index' => ListExams::route('/'),
+            // Panggil class CustomListExams yang kita buat di bawah
+            'index' => CustomListExams::route('/'),
         ];
+    }
+}
+
+/**
+ * Class halaman khusus untuk list ujian siswa.
+ * Ditulis di sini agar hemat berkas & folder Pages bisa dihapus total.
+ */
+class CustomListExams extends ListRecords
+{
+    protected static string $resource = ExamResource::class;
+
+    protected function getHeaderActions(): array
+    {
+        // Kosongkan array ini agar tombol "New Exam" hilang total
+        return [];
     }
 }
